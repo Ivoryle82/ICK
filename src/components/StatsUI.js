@@ -7,27 +7,42 @@ class StatsUI {
         this.moneyText = null;
         this.skillsText = null;
         this.daysText = null;
+        this.background = null;
     }
 
-    create(x, y) {
-        this.healthText = this.scene.add.text(x, y, `Health: ${this.scene.playerStats.health}`, {
-            fontSize: '16px',
-            fill: '#fff'
+    create() {
+        const width = this.scene.scale.width;
+        const height = 50; // Height of the nav bar
+
+        // Create background for the nav bar
+        this.background = this.scene.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0, 0);
+
+        // Create health text
+        this.healthText = this.scene.add.text(10, 10, `Health: ${this.scene.playerStats.health}`, {
+            fontSize: '18px',
+            fill: '#ff0000', // Red color for health
+            fontStyle: 'bold'
         });
 
-        this.moneyText = this.scene.add.text(x, y + 20, `Money: $${this.scene.playerStats.money}`, {
-            fontSize: '16px',
-            fill: '#fff'
+        // Create money text
+        this.moneyText = this.scene.add.text(200, 10, `Money: $${this.scene.playerStats.money}`, {
+            fontSize: '18px',
+            fill: '#00ff00', // Green color for money
+            fontStyle: 'bold'
         });
 
-        this.skillsText = this.scene.add.text(x, y + 40, `Skills: ${this.scene.playerStats.skills}`, {
-            fontSize: '16px',
-            fill: '#fff'
+        // Create skills text
+        this.skillsText = this.scene.add.text(400, 10, `Skills: ${this.scene.playerStats.skills}`, {
+            fontSize: '18px',
+            fill: '#0000ff', // Blue color for skills
+            fontStyle: 'bold'
         });
 
-        this.daysText = this.scene.add.text(x, y + 60, `Days Remaining: ${this.scene.playerStats.days}`, {
-            fontSize: '16px',
-            fill: '#fff'
+        // Create days remaining text
+        this.daysText = this.scene.add.text(600, 10, `Days Remaining: ${this.scene.playerStats.days}`, {
+            fontSize: '18px',
+            fill: '#ffff00', // Yellow color for days remaining
+            fontStyle: 'bold'
         });
     }
 
