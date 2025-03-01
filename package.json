@@ -1,0 +1,31 @@
+{
+  "name": "phaser-2d-game",
+  "version": "1.0.0",
+  "description": "A 2D game using Phaser about an immigrant finding a job in 60 days.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "phaser": "^3.55.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^13.0.0",
+    "html-webpack-plugin": "^5.6.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.0"
+  },
+  "keywords": [
+    "phaser",
+    "game",
+    "2d",
+    "javascript"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
