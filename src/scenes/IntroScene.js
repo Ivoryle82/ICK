@@ -8,12 +8,18 @@ class IntroScene extends Phaser.Scene {
     preload() {
         // Load any assets needed for the intro scene here
         this.load.image('background', 'assets/images/background.png');
+        this.load.image('mainCharacter', 'assets/images/main_char.png');
         this.load.audio('bgMusic', 'assets/sounds/background.mp3');
     }
 
     create() {
-        // Add background image
-        this.add.image(400, 300, 'background');
+        // Add background image and set its size to fit the screen
+        const background = this.add.image(0, 0, 'background').setOrigin(0, 0);
+        background.setDisplaySize(this.sys.game.config.width, this.sys.game.config.height);
+
+        // Add main character image and set its size (adjust as needed)
+        const mainCharacter = this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'mainCharacter');
+        mainCharacter.setDisplaySize(100, 100); // Adjust the size as needed
 
         // Play background music
         this.bgMusic = this.sound.add('bgMusic');
@@ -26,7 +32,7 @@ class IntroScene extends Phaser.Scene {
         this.daysRemaining = 60;
 
         // Display the introductory card
-        this.add.text(400, 300, 'Welcome to the Game!', { fontSize: '32px', fill: '#000' }).setOrigin(0.5);
+        this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Welcome to the Game!', { fontSize: '32px', fill: '#000' }).setOrigin(0.5);
         
         // Display initial stats
         this.displayStats();
