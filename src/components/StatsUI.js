@@ -47,10 +47,10 @@ class StatsUI {
     }
 
     update() {
-        this.healthText.setText(`Health: ${this.scene.playerStats.health}`);
-        this.moneyText.setText(`Money: $${this.scene.playerStats.money}`);
+        this.healthText.setText(`♥${this.scene.playerStats.health}`);
+        this.moneyText.setText(`$${this.scene.playerStats.money}`);
         this.skillsText.setText(`Skills: ${this.scene.playerStats.skills}`);
-        this.daysText.setText(`Days Remaining: ${this.scene.playerStats.days}`);
+        this.daysText.setText(`Days Remaining: ${this.scene.playerStats.daysRemaining}`);
     }
 }
 

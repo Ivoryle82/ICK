@@ -36,24 +36,13 @@ class BootScene extends Phaser.Scene {
 
         // Introductory text to the player with added padding
         const introText = `
-            You've just woken up to the worst news of your life.
-            A notification from your manager tells you that you've been laid off — 
-            and to make matters worse, you're on a visa sponsorship in the United States. 
-            You have 60 days to find a new job or risk losing your right to stay in the country.
-
-            Luckily, you've got some savings ($100), but your health is taking a hit.
-            You've been burning the midnight oil, working overtime to finish projects, 
-            and now your health stands at a worrying 70. The stress is mounting, and 
-            your physical well-being could be a major obstacle in your job search.
-
-            But there's hope. You're not just any applicant — you have outstanding skills in mechanical engineering (80). 
-            Your expertise, along with a bachelor's degree, should give you an edge in the competitive job market.
-            
-            Will you be able to overcome the hurdles of time, health, and financial stress to secure a new job 
-            within 60 days? Or will the pressure break you before you find your way? Every decision counts.`;
+            You've just woken up to the worst news of your life. A notification from your manager tells you that you've been laid off — and to make matters worse, you're on a visa sponsorship in the United States. You have 60 days to find a new job or risk losing your right to stay in the country.
+            Luckily, you've got some savings ($100), but your health is taking a hit. You've been burning the midnight oil, working overtime to finish projects, and now your health stands at a worrying 70. The stress is mounting, and your physical well-being could be a major obstacle in your job search.
+            But there's hope. You're not just any applicant — you have outstanding skills in mechanical engineering (80). Your expertise, along with a bachelor's degree, should give you an edge in the competitive job market. 
+            Will you be able to overcome the hurdles of time, health, and financial stress to secure a new job within 60 days? Or will the pressure break you before you find your way? Every decision counts.`;
 
         // Create a background rectangle for text readability, centered on screen
-        const textBoxWidth = 500;
+        const textBoxWidth = 600;
         const textBoxHeight = 700;
         const textBoxX = this.cameras.main.centerX - (textBoxWidth / 2); // Center the text box horizontally
         const textBoxY = this.cameras.main.centerY - (textBoxHeight / 2); // Center the text box vertically
@@ -63,7 +52,7 @@ class BootScene extends Phaser.Scene {
         const textObject = this.add.text(textBoxX + 20, textBoxY + 20, introText, {
             font: '18px Arial',
             fill: '#fff',
-            wordWrap: { width: textBoxWidth - 40 },  // Add padding to the sides
+            wordWrap: { width: textBoxWidth - 40, useAdvancedWrap: true },  // Add padding to the sides
             lineSpacing: 10  // Add spacing between lines for readability
         });
 
@@ -77,6 +66,17 @@ class BootScene extends Phaser.Scene {
         // Create the "Start Game" button, smaller and centered at the bottom
         // how do i add start game in pixely font
         let startButton = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY + 220, 'startButton').setInteractive().setScale(0.2);
+
+
+        //make sure to delete this
+        this.playerStats = {
+            health: 100,
+            money: 50,
+            skills: 5,
+            daysRemaining: 60
+        };
+
+
 
         // Add an event listener for the button
         startButton.on('pointerdown', () => {
@@ -93,6 +93,10 @@ class BootScene extends Phaser.Scene {
             startButton.setScale(0.2);  // Scale the button back to normal
         });
     }
+
+    // create(){
+    //     this.scene.start('FamilyIssue')
+    // }
 }
 
 export default BootScene;

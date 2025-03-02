@@ -2,13 +2,12 @@ import Phaser from 'phaser';
 import { animateText } from '../utils/typeWriter';
 
 class CardComponent {
-    constructor(scene, scenario, options, updateStatsCallback) {
+    constructor(scene, scenario, options) {
         this.scene = scene;
         //text to output
         this.scenario = scenario;
         //buttons to create
         this.options = options;
-        this.updateStatsCallback = updateStatsCallback;
 
         this.createCard();
     }
@@ -54,7 +53,6 @@ class CardComponent {
     }
 
     handleOptionSelect(option) {
-        this.updateStatsCallback(option.statsChange);
         this.cardBackground.destroy();
         this.scenarioText.destroy();
         this.optionButtons.forEach(button => button.destroy());
