@@ -10,38 +10,38 @@ class StatsUI {
         this.background = null;
     }
 
-    create() {
+    async create() {
         const width = this.scene.scale.width;
         const height = 50; // Height of the nav bar
 
         // Create background for the nav bar
-        this.background = this.scene.add.rectangle(0, 0, width, height, 0x000000).setOrigin(0, 0);
+        //this.background = this.scene.add.rectangle(0, 0, width*2, height, 0x808080).setOrigin(0.5, 0);
 
         // Create health text
-        this.healthText = this.scene.add.text(10, 10, `Health: ${this.scene.playerStats.health}`, {
+        this.healthText = this.scene.add.text(10, 15, `♥${this.scene.playerStats.health}`, {
             fontSize: '18px',
             fill: '#ff0000', // Red color for health
             fontStyle: 'bold'
         });
 
         // Create money text
-        this.moneyText = this.scene.add.text(200, 10, `Money: $${this.scene.playerStats.money}`, {
+        this.moneyText = this.scene.add.text(90, 15, `$${this.scene.playerStats.money}`, {
             fontSize: '18px',
-            fill: '#00ff00', // Green color for money
+            fill: '#013220', // Green color for money
             fontStyle: 'bold'
         });
 
         // Create skills text
-        this.skillsText = this.scene.add.text(400, 10, `Skills: ${this.scene.playerStats.skills}`, {
+        this.skillsText = this.scene.add.text(175, 15, `Skills: ${this.scene.playerStats.skills}`, {
             fontSize: '18px',
             fill: '#0000ff', // Blue color for skills
             fontStyle: 'bold'
         });
 
         // Create days remaining text
-        this.daysText = this.scene.add.text(600, 10, `Days Remaining: ${this.scene.playerStats.days}`, {
+        this.daysText = this.scene.add.text(window.innerWidth-225, 15, `Days Remaining: ${this.scene.playerStats.daysRemaining}`, {
             fontSize: '18px',
-            fill: '#ffff00', // Yellow color for days remaining
+            fill: '#000000', // Yellow color for days remaining
             fontStyle: 'bold'
         });
     }
