@@ -34,18 +34,22 @@ class EndScene extends Phaser.Scene {
         endingMessage = this.add.text(textBoxX + 20, 200, endingMessage, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
         animateText(endingMessage);
         setTimeout(() => {
-            let choice1 = this.add.text(textBoxX + 20, 250, 'Choice 1: ' + this.options[0], { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-            animateText(choice1);
+            let health = this.add.text(textBoxX + 20, 250, 'Ending Health: ' + this.playerStats.health, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+            animateText(health);
             setTimeout(() => {
-                let choice2 = this.add.text(textBoxX + 20, 300, 'Choice 2: ' + this.options[1], { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-                animateText(choice2);
+                let money = this.add.text(textBoxX + 20, 300, 'Ending Money: ' + this.playerStats.money, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+                animateText(money);
+                setTimeout(() => {
+                    let skills = this.add.text(textBoxX + 20, 350, 'Ending Skills: ' + this.playerStats.skills, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+                    animateText(skills);
+                },1500);
             },1500);
         },1500);
 
-        let more = this.add.text(this.scale.width/2, 425, 'Click here to find out more about your decisions and their real world impacts', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
+        let more = this.add.text(this.scale.width/2, 450, 'Click here to find out more about your decisions and their real world impacts', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
         more.setInteractive();
         more.on('pointerdown', function(pointer) {
-            let newWindow = window.open("https://www.usich.gov/guidance-reports-data/data-trends");
+            let newWindow = window.open("https://www.usich.gov/guidance-reports-data/data-trends#homelessnessff");
         });
 
         let us = this.add.text(this.scale.width/2, 650, 'About us', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true}}).setInteractive().setOrigin(0.5);
