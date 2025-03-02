@@ -16,10 +16,10 @@ class BootScene extends Phaser.Scene {
 
     create() {
         // Set the background color of the website to black
-        this.cameras.main.setBackgroundColor(0x000000);
+        //this.cameras.main.setBackgroundColor(0x000000);
 
         // Scale the game display smaller
-        this.scale.setGameSize(window.innerWidth * 0.4, window.innerHeight * 0.4); // Set game size to 80% of window
+        //this.scale.setGameSize(window.innerWidth * 0.4, window.innerHeight * 0.4); // Set game size to 80% of window
 
         // Add an animated background effect (moving background, fading effect, etc.)
         this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'background').setOrigin(0.5, 0.5);

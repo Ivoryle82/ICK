@@ -5,10 +5,9 @@ import BootScene from './scenes/BootScene';
 import IntroScene from './scenes/IntroScene';
 import GameScene from './scenes/GameScene';
 import EndScene from './scenes/EndScene';
-import UIScene from './scenes/UIScene';
 import AboutUs from './scenes/AboutUs';
 
-gameConfig.scene = [BootScene, FamilyIssue, IntroScene, GameScene, EndScene, AboutUs, UIScene];
+gameConfig.scene = [BootScene, FamilyIssue, IntroScene, GameScene, EndScene, AboutUs];
 
 const game = new Phaser.Game(gameConfig);
 
