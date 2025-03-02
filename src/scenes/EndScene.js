@@ -6,10 +6,8 @@ class EndScene extends Phaser.Scene {
     }
 
     init(data) {
-        this.health = data.health;
-        this.skills = data.skills;
-        this.money = data.money;
-        this.choices = data.choices;
+        this.playerStats = data.playerStats;
+        this.options = data.selectedOptions;
     }
 
     preload() {
@@ -32,14 +30,14 @@ class EndScene extends Phaser.Scene {
         this.add.text(this.cameras.main.centerX, 100, 'Game Over', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
 
         //replace hard coded values with passed info from init
-        let endingMessage = this.getEndingMessage(5 ,0 ,6);
+        let endingMessage = this.getEndingMessage(this.playerStats.health, this.playerStats.money, this.playerStats.skills);
         endingMessage = this.add.text(textBoxX + 20, 200, endingMessage, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
         animateText(endingMessage);
         setTimeout(() => {
-            let choice1 = this.add.text(textBoxX + 20, 250, 'Choice 1: ' + 'this was the choice you made', { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+            let choice1 = this.add.text(textBoxX + 20, 250, 'Choice 1: ' + this.options[0], { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
             animateText(choice1);
             setTimeout(() => {
-                let choice2 = this.add.text(textBoxX + 20, 300, 'Choice 2: ' + 'this was another choice you made', { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+                let choice2 = this.add.text(textBoxX + 20, 300, 'Choice 2: ' + this.options[1], { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
                 animateText(choice2);
             },1500);
         },1500);

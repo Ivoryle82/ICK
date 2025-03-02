@@ -8,9 +8,9 @@ class GameScene extends Phaser.Scene {
     constructor() {
         super('GameScene');
         this.playerStats = {
-            health: 100,
+            health: 70,
             money: 100,
-            skills: 100,
+            skills: 80,
             daysRemaining: 60
         };
         this.selectedOptions = [];
@@ -33,9 +33,9 @@ class GameScene extends Phaser.Scene {
     showScenario() {
     
         const options = [
-            { text: "Network", statsChange: { health: -10, money: -10, skills: +20 }, info: "Thankfully, I have many connections from my last job! Hopefully I can get a job from them..."},
-            { text: "Cold Apply", statsChange: { health: +20, money: -20, skills: 0 }, info: "With my experience, I'm sure I could just cold apply and get a new job!"},
-            { text: "Self Petition Visa", statsChange: { health: +20, money: -20, skills: 0 }, info: "I do have many great accomplishments in research and my field, so this VISA should not be too complicated to get..."},
+            { text: "Network", statsChange: { health: -10, money: -20, skills: 0 }, info: "Thankfully, I have many connections from my last job! Hopefully I can get a job from them..."},
+            { text: "Cold Apply", statsChange: { health: -20, money: -20, skills: 0 }, info: "With my experience, I'm sure I could just cold apply and get a new job!"},
+            { text: "Self Petition Visa", statsChange: { health: -30, money: -50, skills: 0 }, info: "I do have many great accomplishments in research and my field, so this VISA should not be too complicated to get..."},
         ];
         
         new CardComponent2(this, 
@@ -46,6 +46,11 @@ class GameScene extends Phaser.Scene {
                 this.playerStats.health += selectedOption.health;
                 this.playerStats.money += selectedOption.money;
                 this.playerStats.skills += selectedOption.skills;
+
+                //fix how options are sent back so we can access the text
+                this.selectedOptions.push(selectedOption.text);
+
+
                 this.scene.start('FamilyIssue', {playerStats: this.playerStats, selectedOptions: this.selectedOptions}); // Pass selected options to next scene
             }
         );
@@ -57,16 +62,8 @@ class GameScene extends Phaser.Scene {
         this.playerStats.skills += statsChange.skills;
         this.playerStats.daysRemaining -= 1;
 
+
         console.log('Updated Stats:', this.playerStats);
-    }
-
-    nextScenario(option) {
-
-    }
-
-    endGame() {
-        // Evaluate stats and transition to EndScene
-        this.scene.start('EndScene', { health: this.stats.health, money: this.stats.money, skills: this.stats.skills });
     }
 }
 

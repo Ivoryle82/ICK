@@ -65,18 +65,7 @@ class BootScene extends Phaser.Scene {
 
         // Create the "Start Game" button, smaller and centered at the bottom
         // how do i add start game in pixely font
-        let startButton = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY + 240, 'startButton').setInteractive().setScale(0.2);
-
-
-        //make sure to delete this
-        this.playerStats = {
-            health: 100,
-            money: 50,
-            skills: 5,
-            daysRemaining: 60
-        };
-
-
+        let startButton = this.add.text(textBoxX * 1.5, textBoxX * 1.5, 'Start Game', { fontSize: '32px', fill: '#ffffff' }).setInteractive().setScale(1);
 
         // Add an event listener for the button
         startButton.on('pointerdown', () => {
@@ -86,17 +75,15 @@ class BootScene extends Phaser.Scene {
 
         // Add hover effect for the button
         startButton.on('pointerover', () => {
-            startButton.setScale(0.3);  // Scale the button up on hover
+            startButton.setScale(1.1);  // Scale the button up on hover
         });
 
         startButton.on('pointerout', () => {
-            startButton.setScale(0.2);  // Scale the button back to normal
+            startButton.setScale(1);  // Scale the button back to normal
         });
-    }
 
-    // create(){
-    //     this.scene.start('FamilyIssue')
-    // }
+        this.add.image(textBoxX * 0.5, textBoxX,'mainCharacter').setScale(0.3);
+    }
 }
 
 export default BootScene;

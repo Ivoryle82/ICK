@@ -11,8 +11,7 @@ class FamilyIssue extends Phaser.Scene{
     init(data) {
         this.playerStats = data.playerStats;
         this.playerStats.daysRemaining -= 30;
-        this.selectedOptions = data.selectedOptions || []; // Get the selected options passed from GameScene
-
+        this.selectedOptions = data.selectedOptions; // Get the selected options passed from GameScene
     }
     preload() {
         // Load any assets needed for the intro scene here
@@ -34,7 +33,7 @@ class FamilyIssue extends Phaser.Scene{
         //let text = `Oh no! You've just received even more terrible news. Your mom back home has fallen ill. Your siblings have reached out to you for financial help as you are the breadwinner of the family. However, you don't have an emergency fund and sending money home will put you in a tight financial situation. You have yet to find a new job and this could be a hole that you can't dig yourself out of.
         //Do you send any remaining money you have or keep it to use for yourself?
         //`;
-        let text = `Oh no! You've just received terrible news—your mom is ill, and your siblings need financial help. As the breadwinner, you're expected to send money, but being unemployed leaves you with little money. Do you send the money or keep it for yourself?`;
+        let text = `Oh no! You've just received terrible news —- your mom is ill, and your siblings need financial help. As the breadwinner, you're expected to send money, but being unemployed leaves you with little money. Do you send the money or keep it for yourself?`;
 
         //new CardComponent2(this, text , options);
         new CardComponent2(this, 
@@ -45,9 +44,18 @@ class FamilyIssue extends Phaser.Scene{
                 this.playerStats.health += selectedOption.health;
                 this.playerStats.money += selectedOption.money;
                 this.playerStats.skills += selectedOption.skills;
+                this.selectedOptions.push(selectedOption.text);
                 this.scene.start('EndScene', { playerStats: this.playerStats, selectedOptions: this.selectedOptions }); // Now only starts after Continue is clicked
             }
         );
+    }
+    updateStats(statsChange) {
+        this.playerStats.health += statsChange.health;
+        this.playerStats.money += statsChange.money;
+        this.playerStats.skills += statsChange.skills;
+        this.playerStats.daysRemaining -= 1;
+
+        console.log('Updated Stats:', this.playerStats);
     }
 }
 
