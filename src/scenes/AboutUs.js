@@ -7,11 +7,10 @@ class AboutUs extends Phaser.Scene {
         this.load.image('Ken', 'assets/images/Ken_Pixel.png');
         this.load.image('Ivory', 'assets/images/Ivory_Pixel.png');
         this.load.image('Cristian', 'assets/images/Cristian_Pixel.png');
-        this.load.image('bg', 'assets/images/JobSceneBackground.png');
+        this.load.image('bg', 'assets/images/JobScene1.png');
     }
     create(){
-        //this.add.rectangle(this.cameras.main.centerX,this.cameras.main.centerY, window.innerWidth, window.innerHeight, 0x808080)
-        this.add.image(this.cameras.main.centerX + 100,this.cameras.main.centerY, 'bg')
+        this.add.image(this.cameras.main.centerX+100,this.cameras.main.centerY, 'bg');
         this.add.image(200, 300, 'Ken').setOrigin(0.5, 0.5).setScale(0.75);
         this.add.image(725, 300, 'Ivory').setOrigin(0.5, 0.5).setScale(0.75);
         this.add.image(1250, 300, 'Cristian').setOrigin(0.5, 0.5).setScale(0.75);
