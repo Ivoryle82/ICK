@@ -1,4 +1,5 @@
 import { animateText } from '../utils/typeWriter';
+import GameState from '../GameState.js';
 
 class EndScene extends Phaser.Scene {
     constructor() {
@@ -34,13 +35,13 @@ class EndScene extends Phaser.Scene {
         endingMessage = this.add.text(textBoxX + 20, 200, endingMessage, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
         animateText(endingMessage);
         setTimeout(() => {
-            let health = this.add.text(textBoxX + 20, 250, 'Ending Health: ' + this.playerStats.health, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-            animateText(health);
+            let option1 = this.add.text(textBoxX + 20, 260, 'First choice you made: ' + GameState.selectedOptions[0], { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+            animateText(option1);
             setTimeout(() => {
-                let money = this.add.text(textBoxX + 20, 300, 'Ending Money: ' + this.playerStats.money, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-                animateText(money);
+                let option2 = this.add.text(textBoxX + 20, 310, 'Second choice you made: ' + GameState.selectedOptions[1], { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+                animateText(option2);
                 setTimeout(() => {
-                    let skills = this.add.text(textBoxX + 20, 350, 'Ending Skills: ' + this.playerStats.skills, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+                    let skills = this.add.text(textBoxX + 20, 360, 'End Health: ' + this.playerStats.health + '   End Money: ' + this.playerStats.money + '   End Skills: ' + this.playerStats.skills, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
                     animateText(skills);
                 },1500);
             },1500);
