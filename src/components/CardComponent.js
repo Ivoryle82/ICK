@@ -20,14 +20,17 @@ class CardComponent {
         this.cardBackground = this.scene.add.rectangle(width / 2, height - height * 0.2, width, height * 0.3, 0x000000).setOrigin(0.5);
         this.cardBackground.setAlpha(0.7); // Set opacity to 70%
 
-        const closeUp = this.scene.add.image(30, height - 280, 'closeup').setOrigin(0, 0);
+        const closeUp = this.scene.add.image(width * 0.10, height - 280, 'closeup').setOrigin(0, 0);
         closeUp.setDisplaySize(190, 240);
 
         // Create scenario text at the bottom, inside the rectangle
-        this.scenarioText = this.scene.add.text(1370, height - height * 0.3, this.scenario, {
+        // Create scenario text at the bottom, inside the rectangle
+        this.scenarioText = this.scene.add.text(width * 0.66, height - height * 0.3, this.scenario, {
             fontSize: `${Math.min(width, height) * 0.03}px`,
-            fill: '#ffffff', // White text color
+            wordWrap: { width: 900, useAdvancedWrap: true},
+            fill: '#ffffff' // White text color
         }).setOrigin(0.5);
+
 
         // Animate the scenario text
         await animateText(this.scenarioText, 50); // Adjust speed as necessary
@@ -36,7 +39,7 @@ class CardComponent {
         this.optionButtons = this.options.map((option, index) => {
             const buttonYPosition = height - height * 0.22 + (index * height * 0.05); // Decreased the Y position gap
 
-            const button = this.scene.add.text(width / 2, buttonYPosition, option.text, {
+            const button = this.scene.add.text(width * 0.66, buttonYPosition, option.text, {
                 fontSize: `${Math.min(width, height) * 0.025}px`,
             }).setOrigin(0.5).setInteractive();
 
@@ -64,14 +67,16 @@ class CardComponent {
         const height = this.scene.scale.height;
 
         // Create a popup background (black with opacity)
-        this.popupBackground = this.scene.add.rectangle(width / 2, height / 2, width * 0.8, height * 0.4, 0x000000).setOrigin(0.5);
-        this.popupBackground.setAlpha(0.8); // Set opacity to 80%
+        //this.popupBackground = this.scene.add.rectangle(width / 2, height / 2, width * 0.8, height * 0.4, 0x000000).setOrigin(0.5);
+        this.popupBackground = this.scene.add.image(width*0.2, height / 2, 'textbox').setOrigin(0.5);
+        //this.popupBackground.setAlpha(0.8); // Set opacity to 80%
+        this.popupBackground.setDisplaySize(500, 200);
 
         // Add text for the popup information
-        this.popupText = this.scene.add.text(width / 2, height / 2, info, {
+        this.popupText = this.scene.add.text(width*0.2+10, (height / 2) - 20, info, {
             fontSize: `${Math.min(width, height) * 0.025}px`,
-            fill: '#ffffff', // White text color
-            wordWrap: { width: width * 0.7, useAdvancedWrap: true } // Wrapping text
+            fill: '#0', // White text color
+            wordWrap: { width: 350, useAdvancedWrap: true},
         }).setOrigin(0.5);
 
         // Close button for the popup
@@ -98,5 +103,4 @@ class CardComponent {
 }
 
 export default CardComponent;
-
 
