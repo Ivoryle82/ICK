@@ -15,7 +15,8 @@ class StatsUI {
         const height = 50; // Height of the nav bar
 
         // Create background for the nav bar
-        //this.background = this.scene.add.rectangle(0, 0, width*2, height, 0x808080).setOrigin(0.5, 0);
+        this.background = this.scene.add.rectangle(0, 0, width*2, height, 0xFFFFFF).setOrigin(0.5, 0);
+        this.background.setAlpha(0.7); 
 
         // Create health text
         this.healthText = this.scene.add.text(10, 15, `♥${this.scene.playerStats.health}`, {

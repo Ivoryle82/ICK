@@ -8,7 +8,7 @@ class BootScene extends Phaser.Scene {
 
     preload() {
         // Load assets
-        this.load.image('background', 'assets/images/City1.png');
+        this.load.image('background', 'assets/images/City2.png');
         this.load.audio('bgMusic', 'assets/sounds/background.mp3');
         this.load.image('mainCharacter', 'assets/images/main_char.png');
         this.load.image('startButton', 'assets/images/start_button.png');  // Add a start button image
@@ -65,7 +65,7 @@ class BootScene extends Phaser.Scene {
 
         // Create the "Start Game" button, smaller and centered at the bottom
         // how do i add start game in pixely font
-        let startButton = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY + 220, 'startButton').setInteractive().setScale(0.2);
+        let startButton = this.add.image(this.cameras.main.centerX, this.cameras.main.centerY + 240, 'startButton').setInteractive().setScale(0.2);
 
 
         //make sure to delete this
