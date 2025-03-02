@@ -1,7 +1,7 @@
 const gameConfig = {
     type: Phaser.AUTO, // Use Phaser.AUTO for the rendering context
-    width: 400,
-    height: 300,
+    width: window.innerWidth,
+    height: window.innerHeight,
     physics: {
         default: 'arcade',
         arcade: {
