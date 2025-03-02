@@ -47,7 +47,7 @@ class EndScene extends Phaser.Scene {
         let more = this.add.text(this.scale.width/2, 425, 'Click here to find out more about your decisions and their real world impacts', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
         more.setInteractive();
         more.on('pointerdown', function(pointer) {
-            let newWindow = window.open("https://google.com");
+            let newWindow = window.open("https://www.usich.gov/guidance-reports-data/data-trends");
         });
 
         let us = this.add.text(this.scale.width/2, 650, 'About us', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true}}).setInteractive().setOrigin(0.5);
