@@ -70,6 +70,7 @@ class BootScene extends Phaser.Scene {
         // Add an event listener for the button
         startButton.on('pointerdown', () => {
             this.bgMusic.stop();  // Stop the background music
+            //this.scene.start('EndScene', {playerStats: {health: 1, money:1,skills:1}}); 
             this.scene.start('GameScene');  // Transition to the next scene
         });
 

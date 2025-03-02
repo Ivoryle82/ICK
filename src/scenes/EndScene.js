@@ -13,7 +13,7 @@ class EndScene extends Phaser.Scene {
 
     preload() {
         // Load any assets needed for the intro scene here
-        this.load.image('background', 'assets/images/background.png');
+        this.load.image('sunset', 'assets/images/NYCSunset.png');
         this.load.audio('bgMusic', 'assets/sounds/background.mp3');
     }
 
@@ -24,7 +24,7 @@ class EndScene extends Phaser.Scene {
         const textBoxY = this.cameras.main.centerY - (textBoxHeight / 2); // Center the text box vertically
         
         
-        this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'background').setOrigin(0.5, 0.5);
+        this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'sunset').setOrigin(0.5, 0.5);
         
         this.add.rectangle(textBoxX - 100, textBoxY, textBoxWidth + 200, textBoxHeight, 0x000000).setOrigin(0, 0).setAlpha(0.7);
         
