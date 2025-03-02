@@ -34,6 +34,12 @@ class AboutUs extends Phaser.Scene {
         cristian.on('pointerdown', () => {
             let cristianWindow = window.open('https://www.linkedin.com/in/cristian-cortez/');
         })
+
+        this.add.text(this.scale.width/2, 650, 'Press R to return to start', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
+
+        this.input.keyboard.on('keydown-R', () => {
+            this.scene.start('BootScene');
+        });
     }
 }
 
