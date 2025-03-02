@@ -1,3 +1,5 @@
+import { animateText } from '../utils/typeWriter';
+
 class EndScene extends Phaser.Scene {
     constructor() {
         super({ key: 'EndScene' });
@@ -17,29 +19,43 @@ class EndScene extends Phaser.Scene {
     }
 
     create() {
-        this.add.image(400, 300, 'background');
-        this.add.text(400, 100, 'Game Over', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
+        const textBoxWidth = 600;
+        const textBoxHeight = 700;
+        const textBoxX = this.cameras.main.centerX - (textBoxWidth / 2); // Center the text box horizontally
+        const textBoxY = this.cameras.main.centerY - (textBoxHeight / 2); // Center the text box vertically
+        
+        
+        this.add.image(this.cameras.main.centerX, this.cameras.main.centerY, 'background').setOrigin(0.5, 0.5);
+        
+        this.add.rectangle(textBoxX - 100, textBoxY, textBoxWidth + 200, textBoxHeight, 0x000000).setOrigin(0, 0).setAlpha(0.7);
+        
+        this.add.text(this.cameras.main.centerX, 100, 'Game Over', { fontSize: '32px', fill: '#fff' }).setOrigin(0.5);
 
         //replace hard coded values with passed info from init
         let endingMessage = this.getEndingMessage(5 ,0 ,6);
-        endingMessage = this.add.text(100, 200, endingMessage, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-        this.animateText(endingMessage);
+        endingMessage = this.add.text(textBoxX + 20, 200, endingMessage, { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+        animateText(endingMessage);
         setTimeout(() => {
-            let choice1 = this.add.text(100, 250, 'Choice 1: ' + 'this was the choice you made', { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-            this.animateText(choice1);
+            let choice1 = this.add.text(textBoxX + 20, 250, 'Choice 1: ' + 'this was the choice you made', { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+            animateText(choice1);
             setTimeout(() => {
-                let choice2 = this.add.text(100, 300, 'Choice 2: ' + 'this was another choice you made', { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
-                this.animateText(choice2);
+                let choice2 = this.add.text(textBoxX + 20, 300, 'Choice 2: ' + 'this was another choice you made', { fontSize: '24px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.05);
+                animateText(choice2);
             },1500);
         },1500);
 
-        let more = this.add.text(400, 425, 'Click here to find out more about your decisions and their real world impacts', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
+        let more = this.add.text(this.scale.width/2, 425, 'Click here to find out more about your decisions and their real world impacts', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
         more.setInteractive();
         more.on('pointerdown', function(pointer) {
             let newWindow = window.open("https://google.com");
         });
 
-        this.add.text(400, 550, 'Press R to Restart', { fontSize: '20px', fill: '#fff' }).setOrigin(0.5);
+        let us = this.add.text(this.scale.width/2, 650, 'About us', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true}}).setInteractive().setOrigin(0.5);
+        us.on('pointerdown', () => {
+            this.scene.start('AboutUs');
+        })
+
+        this.add.text(this.scale.width/2, 550, 'Press R to Restart', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700, useAdvancedWrap: true} }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-R', () => {
             this.scene.start('BootScene');
@@ -57,42 +73,6 @@ class EndScene extends Phaser.Scene {
             return 'Open-ended: Your journey continues, but the future is uncertain.';
         }
     }
-
-    animateText(target, speedInMs = 25) {
-        // store original text
-        const message = target.text;
-        const invisibleMessage = message.replace(/[^ ]/g, " ");
-      
-        // clear text on screen
-        target.text = "";
-      
-        // mutable state for visible text
-        let visibleText = "";
-      
-        // use a Promise to wait for the animation to complete
-        return new Promise((resolve) => {
-          const timer = target.scene.time.addEvent({
-            delay: speedInMs,
-            loop: true,
-            callback() {
-              // if all characters are visible, stop the timer
-              if (target.text === message) {
-                timer.destroy();
-                return resolve();
-              }
-      
-              // add next character to visible text
-              visibleText += message[visibleText.length];
-      
-              // right pad with invisibleText
-              const invisibleText = invisibleMessage.substring(visibleText.length);
-      
-              // update text on screen
-              target.text = visibleText + invisibleText;
-            },
-          });
-        });
-      }
       
 }
 
