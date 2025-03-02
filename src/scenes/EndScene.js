@@ -42,7 +42,7 @@ class EndScene extends Phaser.Scene {
         this.add.text(400, 550, 'Press R to Restart', { fontSize: '20px', fill: '#fff' }).setOrigin(0.5);
 
         this.input.keyboard.on('keydown-R', () => {
-            this.scene.start('IntroScene');
+            this.scene.start('BootScene');
         });
     }
 

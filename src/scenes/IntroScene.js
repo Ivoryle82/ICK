@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import StatsUI from '../components/StatsUI';
 
 class IntroScene extends Phaser.Scene {
     constructor() {
@@ -26,29 +27,30 @@ class IntroScene extends Phaser.Scene {
         this.bgMusic.play({ loop: true });
 
         // Initialize stats
-        this.health = 100;
-        this.money = 50;
-        this.skills = 5;
-        this.daysRemaining = 60;
+        this.playerStats={
+            health: 100,
+            money: 50,
+            skills: 5,
+            daysRemaining: 60
+        };
+        this.StatsUI = new StatsUI(this);
+        this.StatsUI.create();
+
+        let updateHealth = this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, "Update health", { fontSize: '32px', fill: '#000' }).setInteractive();
+        updateHealth.on('pointerover', () => {
+            this.playerStats.health -= 5;
+            this.StatsUI.update();
+        })
+
 
         // Display the introductory card
-        this.add.text(this.sys.game.config.width / 2, this.sys.game.config.height / 2, 'Welcome to the Game!', { fontSize: '32px', fill: '#000' }).setOrigin(0.5);
-        
-        // Display initial stats
-        this.displayStats();
+        this.add.text(this.sys.game.config.width / 2, 100, 'Welcome to the Game!', { fontSize: '32px', fill: '#000' }).setOrigin(0.5);
 
         // Start button
         this.input.once('pointerdown', () => {
             this.bgMusic.stop();
             this.scene.start('GameScene', { health: this.health, money: this.money, skills: this.skills, daysRemaining: this.daysRemaining });
         });
-    }
-
-    displayStats() {
-        this.add.text(100, 200, `Health: ${this.health}`, { fontSize: '20px', fill: '#fff' });
-        this.add.text(100, 220, `Money: $${this.money}`, { fontSize: '20px', fill: '#fff' });
-        this.add.text(100, 240, `Skills: ${this.skills}`, { fontSize: '20px', fill: '#fff' });
-        this.add.text(100, 260, `Days Remaining: ${this.daysRemaining}`, { fontSize: '20px', fill: '#fff' });
     }
 }
 

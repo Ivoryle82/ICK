@@ -5,6 +5,7 @@ import BootScene from './scenes/BootScene';
 import IntroScene from './scenes/IntroScene';
 import GameScene from './scenes/GameScene';
 import EndScene from './scenes/EndScene';
+import FamilyIssue from './scenes/FamilyIssue';
 import UIScene from './scenes/UIScene';
 
 gameConfig.scene = [BootScene, FamilyIssue, IntroScene, GameScene, EndScene, UIScene];
